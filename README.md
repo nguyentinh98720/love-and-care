@@ -1,4 +1,4 @@
-demo: https://love-and-care.herokuapp.com/
+demo: https://love-and-care.herokuapp.com
 neccessary configuration in package com.tinhnv.setting:
 - google account: email and password.
 - exchange rates api: http://api.exchangeratesapi.io
