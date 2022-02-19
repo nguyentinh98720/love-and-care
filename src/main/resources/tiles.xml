@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<!-- Base Definitions for Admin -->
+	<definition name="admin-base-definition"
+		template="/WEB-INF/views/admin/layouts/default_layout.jsp">
+		<put-attribute name="static_resource_css" value=""/>
+		<put-attribute name="menu"
+			value="/WEB-INF/views/admin/layouts/menu.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/admin/layouts/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/admin/layouts/footer.jsp" />
+		<put-attribute name="logout"
+			value="/WEB-INF/views/admin/layouts/logout_modal.jsp" />
+		<put-attribute name="static_resource_js" value="" />
+		<put-attribute name="alert_box"
+			value="/WEB-INF/views/admin/static_resources/aleltBox.jsp"/>
+	</definition>
+
+	<!-- Dashboard for admin -->
+	<definition name="dashboard" extends="admin-base-definition">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/jspviews/dashboard.jsp" />
+		<put-attribute name="static_resource_js"
+			value="/WEB-INF/views/admin/static_resources/for-dashboard.jsp" />
+	</definition>
+	
+	<!-- Event manage for admin -->
+	<definition name="eventManage" extends="admin-base-definition">
+		<put-attribute name="static_resource_css"
+			value="/WEB-INF/views/admin/static_resources/onOffSwitch_CheckboxSwitch.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/jspviews/eventManage.jsp" />
+		<put-attribute name="static_resource_js"
+			value="/WEB-INF/views/admin/static_resources/for-eventManage.jsp" />
+	</definition>
+	
+	<!-- Edit event for admin -->
+	<definition name="editEvent" extends="admin-base-definition">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/jspviews/editEvent.jsp" />
+		<put-attribute name="static_resource_js"
+			value="/WEB-INF/views/admin/static_resources/for-editEvent.jsp" />
+	</definition>
+	
+	<!-- Create new event for admin -->
+	<definition name="newEvent" extends="admin-base-definition">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/jspviews/newEvent.jsp" />
+		<put-attribute name="static_resource_js"
+			value="/WEB-INF/views/admin/static_resources/for-createNewEvent.jsp" />
+	</definition>
+
+	<!-- Account manage for admin -->
+	<definition name="accountManage"
+		extends="admin-base-definition">
+		<put-attribute name="static_resource_css"
+			value="/WEB-INF/views/admin/static_resources/onOffSwitch_CheckboxSwitch.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/jspviews/accountManage.jsp" />
+		<put-attribute name="static_resource_js"
+			value="/WEB-INF/views/admin/static_resources/for-accountManage.jsp" />
+	</definition>
+	
+	<!-- Create new account for admin -->
+	<definition name="newAccount"
+		extends="admin-base-definition">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/jspviews/newAccount.jsp" />
+		<put-attribute name="static_resource_js"
+			value="/WEB-INF/views/admin/static_resources/for-createNewAccount.jsp" />
+	</definition>
+	
+	<!-- Edit information of account for admin -->
+	<definition name="editAccount"
+		extends="admin-base-definition">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/jspviews/editAccount.jsp" />
+		<put-attribute name="static_resource_js"
+			value="/WEB-INF/views/admin/static_resources/for-editAccount.jsp" />
+	</definition>
+	
+	<!-- Detail of event information for admin -->
+	<definition name="detailEvent"
+		extends="admin-base-definition">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/jspviews/detailEvent.jsp" />
+	</definition>
+	
+	<!-- Detail of account information for admin -->
+	<definition name="detailAccount"
+		extends="admin-base-definition">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/jspviews/detailAccount.jsp" />
+	</definition>
+	
+	<!-- Donation timeline for admin -->
+	<definition name="timeline" extends="admin-base-definition">
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/jspviews/timeline.jsp" />
+		<put-attribute name="static_resource_js"
+			value="/WEB-INF/views/admin/static_resources/for-timeline.jsp" />
+	</definition>
+	
+<!-- ================================================================================================== -->
+	
+	<!-- Forgot password page -->
+	<definition name="forgotPassword"
+		template="/WEB-INF/views/greeting/layouts/default_layout.jsp">
+		<put-attribute name="page" value="/WEB-INF/views/greeting/jsp_views/forgotPassword.jsp" />
+	</definition>
+	
+	<!-- Change password page -->
+	<definition name="changePassword"
+		template="/WEB-INF/views/greeting/layouts/default_layout.jsp">
+		<put-attribute name="page" value="/WEB-INF/views/greeting/jsp_views/changePassword.jsp" />
+	</definition>
+	
+	<!-- Next page after register page -->
+	<definition name="resultRegister"
+		template="/WEB-INF/views/greeting/layouts/default_layout.jsp">
+		<put-attribute name="page" value="/WEB-INF/views/greeting/jsp_views/resultRegister.jsp" />
+	</definition>
+	
+	<!-- Register page -->
+	<definition name="register"
+		template="/WEB-INF/views/greeting/layouts/default_layout.jsp">
+		<put-attribute name="page" value="/WEB-INF/views/greeting/jsp_views/register.jsp" />
+	</definition>
+	
+	<!-- Login page -->
+	<definition name="login"
+		template="/WEB-INF/views/greeting/layouts/default_layout.jsp">
+		<put-attribute name="page" value="/WEB-INF/views/greeting/jsp_views/login.jsp" />
+	</definition>
+	
+	<!-- 404 page -->
+	<definition name="404"
+		template="/WEB-INF/views/greeting/layouts/error_layout.jsp">
+		<put-attribute name="errorPage" value="/WEB-INF/views/greeting/jsp_views/404.jsp" />
+	</definition>
+	
+	<!-- Error page -->
+	<definition name="error"
+		template="/WEB-INF/views/greeting/layouts/error_layout.jsp">
+		<put-attribute name="errorPage" value="/WEB-INF/views/greeting/jsp_views/error.jsp" />
+	</definition>
+
+<!-- ================================================================================================== -->
+
+	<!-- Base Definitions for User page -->
+	<definition name="user-base-definition"
+		template="/WEB-INF/views/users/layouts/default_layout.jsp">
+		<put-attribute name="homeHeader"
+			value="/WEB-INF/views/users/layouts/header.jsp" />
+		<put-attribute name="homeBanner" value="" />
+		<put-attribute name="homeBody" value="" />
+		<put-attribute name="homeFooter"
+			value="/WEB-INF/views/users/layouts/footer.jsp" />
+	</definition>
+	
+	<!-- Home page -->
+	<definition name="home" extends="user-base-definition">
+		<put-attribute name="homeBanner"
+			value="/WEB-INF/views/users/layouts/banner.jsp"/>
+		<put-attribute name="homeBody"
+			value="/WEB-INF/views/users/jsp_views/donations.jsp"/>
+	</definition>
+	
+	<!-- Detail event page -->
+	<definition name="userDetailEvent" extends="user-base-definition">
+		<put-attribute name="homeBody"
+			value="/WEB-INF/views/users/jsp_views/detail.jsp"/>
+	</definition>
+	
+	<!-- Donate action page -->
+	<definition name="donate" extends="user-base-definition">
+		<put-attribute name="homeBody"
+			value="/WEB-INF/views/users/jsp_views/donate.jsp"/>
+	</definition>
+	
+	<!-- Donate result page -->
+	<definition name="afterDonate" extends="user-base-definition">
+		<put-attribute name="homeBody"
+			value="/WEB-INF/views/users/jsp_views/after_donate.jsp"/>
+	</definition>
+	
+	<!-- Profiles page -->
+	<definition name="profile" extends="user-base-definition">
+		<put-attribute name="homeBody"
+			value="/WEB-INF/views/users/jsp_views/profiles.jsp"/>
+	</definition>
+	
+	<!-- History page -->
+	<definition name="history" extends="user-base-definition">
+		<put-attribute name="homeBody"
+			value="/WEB-INF/views/users/jsp_views/history.jsp"/>
+	</definition>
+	
+	<!-- Search page -->
+	<definition name="search" extends="user-base-definition">
+		<put-attribute name="homeBody"
+			value="/WEB-INF/views/users/jsp_views/search_result.jsp"/>
+	</definition>
+
+<!-- ================================================================================================== -->	
+	<!-- Test project -->
+	<definition name="test" template="/test.jsp"></definition>
+</tiles-definitions>

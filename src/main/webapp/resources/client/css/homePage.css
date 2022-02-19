@@ -1,0 +1,76 @@
+@charset "UTF-8";
+@charset "UTF-8";
+
+section.vatiSection {
+	background-image: url('../../media/pig.jpg');
+	background-repeat: none;
+	background-size: cover;
+}
+
+section.vatiSection h1, section.vatiSection p {
+	font-family: cursive;
+}
+
+section.vatiSection h1 {
+	text-shadow: 1px 1px 1px #fff;
+}
+
+acticle.vatiCard>div {
+	height: 100%;
+}
+/* 
+acticle.vatiCard>div>img {
+	max-height: 300px;
+} */
+
+acticle.vatiCard>div>div>h5 {
+	height: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+acticle.vatiCard:hover>div {
+	cursor: pointer;
+	box-shadow: 0 5px 15px #66464685;
+	color: #ff4e98 !important;
+}
+ 
+button#showMoreButton>div {
+	position: relative;
+}
+
+button#showMoreButton>div>i {
+	display: none;
+	position: absolute;
+	right: 50%;
+	margin-right: -15%;
+	bottom: 0;
+	margin-bottom: -3%;
+	animation-name: waitforme;
+	animation-duration: 2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: both;
+}
+
+@keyframes waitforme {
+	0%   {transform: rotate(0deg);color: red;}
+	25%  {transform: rotate(90deg);color: blue;}
+	50%  {transform: rotate(180deg);color: yellow;}
+	75%  {transform: rotate(270deg);color: green;}
+	100% {transform: rotate(360deg);color: red;}
+}
+
+button#showMoreButton>i {
+	transition: transform 1s;
+}
+
+button#showMoreButton:hover {
+	color: #0f0 !important;
+	border-color: #0f0 !important;
+	box-shadow: 5px 5px 10px #66464685;
+}
+
+button#showMoreButton:hover>i {
+	transform: rotate(180deg);
+}

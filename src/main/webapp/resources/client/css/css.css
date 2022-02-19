@@ -1,0 +1,15 @@
+@charset "UTF-8";
+body {
+	background-image: url("../../media/pig.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+form div.vatiSet {
+	position: relative;
+}
+form div.vatiSet>span {
+	position: absolute;
+	bottom: 0;
+	opacity: 0.9;
+	display: none;
+}
