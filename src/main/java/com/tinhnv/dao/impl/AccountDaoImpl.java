@@ -72,11 +72,11 @@ public class AccountDaoImpl implements AccountDao {
 	public List<AccountForManage> getListAccountForManageBySearch(String condition, String search) {
 		String sql = "";
 		if(condition.equalsIgnoreCase("name")) {
-			sql = "SELECT MATK, EMAIL, MATKHAU, KHOAMK, TEN, HO, SODT, DIACHI, ROLE, TRANGTHAI FROM TAIKHOAN WHERE TEN LIKE N'%" + search + "%' OR HO LIKE N'%" + search + "%'";
+			sql = "SELECT MATK, EMAIL, MATKHAU, KHOAMK, TEN, HO, SODT, DIACHI, ROLE, TRANGTHAI FROM TAIKHOAN WHERE TEN ILIKE N'%" + search + "%' OR HO ILIKE N'%" + search + "%'";
 		} else if(condition.equalsIgnoreCase("phone")) {
-			sql = "SELECT MATK, EMAIL, MATKHAU, KHOAMK, TEN, HO, SODT, DIACHI, ROLE, TRANGTHAI FROM TAIKHOAN WHERE SODT LIKE N'%" + search + "%'";
+			sql = "SELECT MATK, EMAIL, MATKHAU, KHOAMK, TEN, HO, SODT, DIACHI, ROLE, TRANGTHAI FROM TAIKHOAN WHERE SODT ILIKE N'%" + search + "%'";
 		} else if(condition.equalsIgnoreCase("address")) {
-			sql = "SELECT MATK, EMAIL, MATKHAU, KHOAMK, TEN, HO, SODT, DIACHI, ROLE, TRANGTHAI FROM TAIKHOAN WHERE DIACHI LIKE N'%" + search + "%'";
+			sql = "SELECT MATK, EMAIL, MATKHAU, KHOAMK, TEN, HO, SODT, DIACHI, ROLE, TRANGTHAI FROM TAIKHOAN WHERE DIACHI ILIKE N'%" + search + "%'";
 		}
 		
 		List<AccountForManage> list = jdbcTemplate.query(sql, new AccountMapperNowImg());

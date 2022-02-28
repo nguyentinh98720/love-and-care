@@ -108,14 +108,14 @@ public class DonationDaoImpl implements DonationDao {
 	@Override
 	public int getNumDonateBySearchAccountName(String searchValue) {
 		searchValue = "%" + searchValue + "%";
-		String sql = "SELECT COUNT(1) FROM DONGGOP AS D JOIN TAIKHOAN AS T ON D.MATK = T.MATK WHERE CONCAT(T.TEN,' ', T.HO) LIKE ?";
+		String sql = "SELECT COUNT(1) FROM DONGGOP AS D JOIN TAIKHOAN AS T ON D.MATK = T.MATK WHERE CONCAT(T.TEN,' ', T.HO) ILIKE ?";
 		return jdbcTemplate.queryForObject(sql, Integer.class, searchValue);
 	}
 
 	@Override
 	public int getNumDonatePerEventAndSearchAccountName(int eventId, String searchValue) {
 		searchValue = "%" + searchValue + "%";
-		String sql = "SELECT COUNT(1) FROM DONGGOP AS D JOIN TAIKHOAN AS T ON D.MATK = T.MATK WHERE D.MACT = ? AND CONCAT(T.TEN,' ', T.HO) LIKE ?";
+		String sql = "SELECT COUNT(1) FROM DONGGOP AS D JOIN TAIKHOAN AS T ON D.MATK = T.MATK WHERE D.MACT = ? AND CONCAT(T.TEN,' ', T.HO) ILIKE ?";
 		return jdbcTemplate.queryForObject(sql, Integer.class, eventId, searchValue);
 	}
 
@@ -138,7 +138,7 @@ public class DonationDaoImpl implements DonationDao {
 				+ "	D.NGAY AS NGAY, D.TINNHAN AS TINNHAN, D.ANDANH AS ANDANH,\r\n"
 				+ "	ROW_NUMBER() OVER (ORDER BY D.MAHD DESC) AS ROW\r\n"
 				+ "	FROM DONGGOP AS D, TAIKHOAN AS T\r\n"
-				+ "	WHERE D.MATK = T.MATK AND CONCAT(T.TEN,' ',T.HO) LIKE ? ) AS RESULT\r\n"
+				+ "	WHERE D.MATK = T.MATK AND CONCAT(T.TEN,' ',T.HO) ILIKE ? ) AS RESULT\r\n"
 				+ "	WHERE RESULT.ROW >= " + from + " AND RESULT.ROW < " + to;
 		searchValue = "%" + searchValue + "%";
 		return jdbcTemplate.query(sql, new DonateTimelineMapper(), searchValue);
@@ -164,7 +164,7 @@ public class DonationDaoImpl implements DonationDao {
 				+ "	D.NGAY AS NGAY, D.TINNHAN AS TINNHAN, D.ANDANH AS ANDANH,\r\n"
 				+ "	ROW_NUMBER() OVER (ORDER BY D.MAHD DESC) AS ROW\r\n"
 				+ "	FROM DONGGOP AS D, TAIKHOAN AS T\r\n"
-				+ "	WHERE D.MATK = T.MATK AND D.MACT = " + eventId + " AND CONCAT(T.TEN,' ',T.HO) LIKE ? ) AS RESULT\r\n"
+				+ "	WHERE D.MATK = T.MATK AND D.MACT = " + eventId + " AND CONCAT(T.TEN,' ',T.HO) ILIKE ? ) AS RESULT\r\n"
 				+ "	WHERE RESULT.ROW >= " + from + " AND RESULT.ROW < " + to;
 		searchValue = "%" + searchValue + "%";
 		return jdbcTemplate.query(sql, new DonateTimelineMapper(), searchValue);

@@ -87,13 +87,13 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public ResponseList getListEventSearchPage(int from, int to, boolean only_active, String searchValue) {
-		String countSql = "SELECT COUNT(1) FROM CHUONGTRINH WHERE TIEUDECT LIKE ?";
+		String countSql = "SELECT COUNT(1) FROM CHUONGTRINH WHERE TIEUDECT ILIKE ?";
 		String sql = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY MACT DESC) AS ROW, MACT, TIEUDECT, NGAYBATDAU, NGAYKETTHUC,"
-				+ " MUCTIEU, UNGHO, TRANGTHAICT FROM CHUONGTRINH WHERE TIEUDECT LIKE ?) AS MYTABLE WHERE ROW >= ? AND ROW < ?";
+				+ " MUCTIEU, UNGHO, TRANGTHAICT FROM CHUONGTRINH WHERE TIEUDECT ILIKE ?) AS MYTABLE WHERE ROW >= ? AND ROW < ?";
 		if(only_active) {
 			sql = "SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY MACT DESC) AS ROW, MACT, TIEUDECT, NGAYBATDAU, NGAYKETTHUC,"
-					+ " MUCTIEU, UNGHO, TRANGTHAICT FROM CHUONGTRINH WHERE TRANGTHAICT = TRUE AND TIEUDECT LIKE ?) AS MYTABLE WHERE ROW >= ? AND ROW < ?";
-			countSql = "SELECT COUNT(1) FROM CHUONGTRINH WHERE TIEUDECT LIKE ? AND TRANGTHAICT = TRUE";
+					+ " MUCTIEU, UNGHO, TRANGTHAICT FROM CHUONGTRINH WHERE TRANGTHAICT = TRUE AND TIEUDECT ILIKE ?) AS MYTABLE WHERE ROW >= ? AND ROW < ?";
+			countSql = "SELECT COUNT(1) FROM CHUONGTRINH WHERE TIEUDECT ILIKE ? AND TRANGTHAICT = TRUE";
 		}
 		searchValue = "%" + searchValue + "%";
 		List<EventHomePage> resultList = new ArrayList<>();
@@ -133,7 +133,7 @@ public class EventDaoImpl implements EventDao {
 
 	@Override
 	public List<EventForManage> getListEventManage(String search) {
-		String sql = "SELECT MACT, TIEUDECT, NGAYBATDAU, NGAYKETTHUC, MUCTIEU, UNGHO, TRANGTHAICT FROM CHUONGTRINH WHERE TIEUDECT LIKE N'%" + search + "%';";
+		String sql = "SELECT MACT, TIEUDECT, NGAYBATDAU, NGAYKETTHUC, MUCTIEU, UNGHO, TRANGTHAICT FROM CHUONGTRINH WHERE TIEUDECT ILIKE N'%" + search + "%';";
 		
 		List<EventForManage> list = jdbcTemplate.query(sql, new EventManageMapper());
 		return list;
