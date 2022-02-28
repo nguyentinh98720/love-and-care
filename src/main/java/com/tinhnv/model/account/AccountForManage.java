@@ -42,7 +42,7 @@ public class AccountForManage {
 			String phoneNumber, String address, String role, VaTiImage avatar, boolean status,
 			String saltPass) {
 		super();
-		this.email = email;
+		this.email = email.toLowerCase();
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -75,7 +75,7 @@ public class AccountForManage {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.toLowerCase();
 	}
 
 	public String getPassword() {

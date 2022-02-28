@@ -22,7 +22,7 @@
 </c:when>
 <c:otherwise>
 						<h1 class="h4 text-gray-900 mb-2">Đăng ký không thành công!</h1>
-						<p class="mb-4 text-danger">Kiểm tra địa chỉ email của bạn và thử lại.</p>
+						<p class="mb-4 text-danger">Xin lỗi vì sự bất tiện này, chúng tôi không thể hoàn thành việc đăng ký tài khoản. Hãy kiểm tra địa chỉ email của bạn và thử lại.</p>
 </c:otherwise>
 </c:choose>
 					</div>

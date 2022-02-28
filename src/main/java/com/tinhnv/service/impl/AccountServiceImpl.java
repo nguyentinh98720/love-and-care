@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -220,7 +221,7 @@ public class AccountServiceImpl implements AccountService {
 		int userId = 0;
 		try {
 			userId = accountAction.getAccountId(userEmail);
-		} catch(EmptyResultDataAccessException e) {
+		} catch(IncorrectResultSizeDataAccessException e) {
 			return false;
 		}
 		

@@ -216,7 +216,7 @@ function clearWarning(input, warning) {
 
 function verifyForm() {
 	submitButton.attr("disabled", "disabled");
-	return (firstNameVerify() && lastNameVerify() && emailVerify() && phoneNumberVerify() && addressVerify()) && isNewEmail(isNewEmailForRegister);
+	return (firstNameVerify() && lastNameVerify() && emailVerify() && phoneNumberVerify() && addressVerify()) && isNewEmailForRegister;
 }
 
 function isNewEmail(email) {
@@ -225,6 +225,7 @@ function isNewEmail(email) {
 		url: url,
 		data: {'email': email},
 		type: 'post',
+		async: false,
 		success: function(result) {
 			repeatVerifyEmail(result);
 			isNewEmailForRegister = result;

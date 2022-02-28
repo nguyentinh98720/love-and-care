@@ -2,7 +2,7 @@ package com.tinhnv.dao.impl;
 
 import java.util.List;
 
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -178,7 +178,7 @@ public class AccountDaoImpl implements AccountDao {
 	public boolean isNewEmail(String email) {
 		String sql = "SELECT COUNT(1) FROM TAIKHOAN WHERE EMAIL = ?";
 		
-		int count = jdbcTemplate.queryForObject(sql, Integer.class, email);
+		int count = jdbcTemplate.queryForObject(sql, Integer.class, email.toLowerCase());
 		if(count == 0) return true;
 		return false;
 	}
@@ -221,7 +221,7 @@ public class AccountDaoImpl implements AccountDao {
 	}
 
 	@Override
-	public int getAccountId(String email) throws EmptyResultDataAccessException {
+	public int getAccountId(String email) throws IncorrectResultSizeDataAccessException {
 		String sql = "SELECT MATK FROM TAIKHOAN WHERE EMAIL=?";
 		
 		return jdbcTemplate.queryForObject(sql, Integer.class, email);
