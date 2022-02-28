@@ -24,11 +24,13 @@ function displayAlertConfirm(message) {
 }    
 //Hiển thị hộp thoại thông báo thành công
 function displayAlertSuccess(message) {
-    displayVatiAlert(message, "success");
+    alert(message);
+    // displayVatiAlert(message, "success");
 }    
 //Hiển thị hộp thoại thông báo lỗi
 function displayAlertError(message) {
-    displayVatiAlert(message, "error");
+    alert(message);
+    // displayVatiAlert(message, "error");
 }    
 
 function displayVatiAlert(message, choose) {

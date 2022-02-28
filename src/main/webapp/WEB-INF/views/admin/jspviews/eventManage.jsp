@@ -19,7 +19,7 @@
                                     <span class="badge badge-light" id="countChoose"></span>
                                 </h6>
                                 <div class="m-0 p-0">
-                                    <label for="chooseAll" class="m-1 p-0 btn btn-sm btn-light">Chọn tất cả</label>
+                                    <label for="chooseAll" class="m-1 p-0 btn btn-sm btn-light"><span id="chooseAllLabel">Chọn tất cả</span></label>
                                     <span class="btn btn-outline-danger btn-sm d-none" id="chooseDelete" title="Xóa mục đã chọn">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                     </span>

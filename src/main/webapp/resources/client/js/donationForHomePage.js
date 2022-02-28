@@ -36,7 +36,7 @@ function getList(from) {
 	if(from > total_get) {
 		loaded();
 		showMoreButton.removeClass("border-info text-info");
-		showMoreButton.children("span").text("Chờ triển khai..");
+		showMoreButton.children("span").text("Đã hết");
 		showMoreButton.attr("disabled", "disabled");
 	} else {
 		getListFromServer(from, ONLY_ACTIVE);

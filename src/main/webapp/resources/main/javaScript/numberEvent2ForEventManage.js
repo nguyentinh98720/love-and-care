@@ -361,8 +361,10 @@ function chooseAllAndNextStep() {
     })
     if(num == TOTAL_EVENTMANAGE) {
         document.getElementById("chooseAll").checked = true;
+        $("span#chooseAllLabel").text("Bỏ chọn tất cả");
     } else {
         document.getElementById("chooseAll").checked = false;
+        $("span#chooseAllLabel").text("Chọn tất cả");
     }
     displayAddOnWhenCheckboxEvent(num);
     displayAndPagination(START_EVENTMANAGE);

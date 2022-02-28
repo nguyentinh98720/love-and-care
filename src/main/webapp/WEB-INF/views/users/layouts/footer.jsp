@@ -19,7 +19,7 @@
                 <td>+84 xxx xxx xxx</td>
             </tr>
             <tr>
-            	<td colspan="2"><small>Liên hệ mình nếu cần xem chức năng dành cho người quản trị.</small></td>
+            	<td colspan="2"><small>Liên hệ để xem chức năng dành cho người quản trị.</small></td>
             </tr>
         </table>
         <a href="mailto:tinhnvfx11601@funix.edu.vn" class="btn btn-sm btn-outline-dark">
