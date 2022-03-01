@@ -16,7 +16,7 @@ div.vatiDonate>div {
 			<table class="table table-borderless my-5">
 				<tr>
 					<th>Đến chương trình:</th>
-					<th class="text-secondary"><c:out value="${requestScope.eventTitle}"/></th>
+					<th class="text-dark"><c:out value="${requestScope.eventTitle}"/></th>
 				</tr>
 				<tr>
 					<th>Cách thức quyên góp:</th>
@@ -41,7 +41,10 @@ div.vatiDonate>div {
 				</tr>
 				<tr>
 					<td><input type="checkbox" name="secret" id="checkboxSecret">
-						<label for="checkboxSecret">Yêu cầu giấu thông tin</label></td>
+						<label for="checkboxSecret" class="fw-bold" style="cursor:pointer;">
+							<small class="user-select-none text-secondary" id="secretSelect">Giấu thông tin cho lần quyên góp này</small>
+						</label>
+					</td>
 					<td class="d-flex justify-content-center">
 						<a href='https://love-and-care.herokuapp.com/quyen-gop/noi-dung-chuong-trinh?eventId=<c:out value="${requestScope.eventId}"/>'
 							role="button" class="btn btn-secondary mx-5">Quay lại</a>

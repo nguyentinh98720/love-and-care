@@ -144,16 +144,16 @@ public class DonationServiceImpl implements DonationService {
 		String rate = request.getParameter("rate");
 		String time = request.getParameter("time");
 		request.getServletContext().setAttribute("rate", rate);
-		request.getServletContext().setAttribute("rateTime", time);
+		request.getServletContext().setAttribute("lastTimeUpdate", time);
 	}
 
 	@Override
 	public Map<String, String> getExchageRate(HttpServletRequest request) {
 		String rate = (String) request.getServletContext().getAttribute("rate");
-		String rateTime = (String) request.getServletContext().getAttribute("rateTime");
+		String rateTime = (String) request.getServletContext().getAttribute("lastTimeUpdate");
 		Map<String, String> map = new HashMap<>();
 		map.put("rate", rate);
-		map.put("rateTime", rateTime);
+		map.put("lastTimeUpdate", rateTime);
 		return map;
 	}
 
@@ -161,7 +161,7 @@ public class DonationServiceImpl implements DonationService {
 	public DonateForPaypal createAPaypalDonateAction(HttpServletRequest request) {
 		CurrencyExchangeRate rateCurrency = new CurrencyExchangeRate();
 		Object rateObject = request.getServletContext().getAttribute("rate");
-		Object rateTimeObject = request.getServletContext().getAttribute("rateTime");
+		Object rateTimeObject = request.getServletContext().getAttribute("lastTimeUpdate");
 		if(rateObject != null && rateTimeObject != null) {
 			rateCurrency.setRate((String) rateObject);
 			rateCurrency.setLastTimeUpdate((String) rateTimeObject);

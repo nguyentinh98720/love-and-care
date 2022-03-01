@@ -32,13 +32,15 @@ function detailDonationUrl(id) {
 	let url = "https://love-and-care.herokuapp.com/quyen-gop/noi-dung-chuong-trinh?eventId=" + id;
 	location.replace(url);
 }
+
 function getList(from) {
 	if(from > total_get) {
 		loaded();
 		showMoreButton.removeClass("border-info text-info");
-		showMoreButton.children("span").text("Đã hết");
+		showMoreButton.children("span").text("Đã hết..");
 		showMoreButton.attr("disabled", "disabled");
 	} else {
+		loadingList();
 		getListFromServer(from, ONLY_ACTIVE);
 	}
 }
@@ -90,7 +92,6 @@ $(document).ready(function() {
 //	getList(START_GET);
 	
 	showMoreButton.click(function() {
-		loadingList();
 		START_GET += NUM_PER_GET;
 		getList(START_GET);
 	})
@@ -101,6 +102,7 @@ function loadingList() {
 	showMoreButton.removeClass("border-info text-info");
 	showMoreButton.addClass("btn-light");
 	showMoreButton.children("div").children("i").show();
+	showMoreButton.children("span").hide();
 }
 
 function loaded() {
@@ -108,4 +110,5 @@ function loaded() {
 	showMoreButton.removeClass("btn-light");
 	showMoreButton.addClass("border-info text-info");
 	showMoreButton.children("div").children("i").hide();
+	showMoreButton.children("span").show();
 }

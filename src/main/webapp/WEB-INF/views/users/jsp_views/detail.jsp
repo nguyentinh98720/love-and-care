@@ -79,9 +79,10 @@ figure.image>img, p>img {
 			<%
 			if (acceptDonate) {
 			%>
-			<div class="text-center py-1"
-				style="position: sticky; bottom: 0; background-color: #fff;">
-				<label for="DonateNow" class="btn btn-outline-danger">Quyên góp ngay</label>
+			<div class="text-center py-1 mb-4"
+				style="position: sticky; bottom: 0; background-color: #00000010; display:none;"
+				id="labelOfDonateButton">
+				<label for="DonateNow" class="btn btn-danger">Quyên góp ngay</label>
 			</div>
 			<% } %>
 		</div>
@@ -184,6 +185,7 @@ figure.image>img, p>img {
 								BigDecimal money = donate.getMoney();
 								Date date = donate.getDate();
 								String message = donate.getMessage();
+								if(message.length() > 15) {message = message.substring(0, 15) + "...";}
 								boolean secret = donate.isSecret();
 								out.println("<tr onclick='showMoreVati(" + rowI + ")'><td>" + (secret ? "Nhà hảo tâm" : accountName) + "</td><td>"
 								+ format.format(money.doubleValue()) + "</td></tr><tr id='rowVati" + rowI
@@ -221,6 +223,7 @@ figure.image>img, p>img {
 								BigDecimal money = donate.getMoney();
 								Date date = donate.getDate();
 								String message = donate.getMessage();
+								if(message.length() > 15) {message = message.substring(0, 15) + "...";}
 								boolean secret = donate.isSecret();
 								out.println("<tr onclick='showMoreVaty(" + rowY + ")'><td>" + (secret ? "Nhà hảo tâm" : accountName) + "</td><td>"
 								+ format.format(money.doubleValue()) + "</td></tr><tr id='rowVaty" + rowY
@@ -241,13 +244,4 @@ figure.image>img, p>img {
 </div>
 <!-- /.container-->
 
-<script type="text/javascript">
-	function showMoreVati(row) {
-		let itis = "tr#rowVati" + row;
-		$(itis).toggle();
-	}
-	function showMoreVaty(row) {
-		let itis = "tr#rowVaty" + row;
-		$(itis).toggle();
-	}
-</script>
+<script src='<c:url value="/static/client/js/detail.js"/>'></script>

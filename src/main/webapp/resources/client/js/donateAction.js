@@ -28,6 +28,18 @@ $(document).ready(function () {
     message.focus(function() {
         clearWarning();
     })
+    
+    let checkboxSecret = $("input#checkboxSecret");
+    let labelSecret = $("small#secretSelect");
+    checkboxSecret.change(function() {
+		if(document.getElementById("checkboxSecret").checked) {
+			labelSecret.removeClass("text-secondary");
+			labelSecret.addClass("text-dark");
+		} else {
+			labelSecret.removeClass("text-dark");
+			labelSecret.addClass("text-secondary");
+		}
+	})
 })
 
 function whenTestDonate() {
@@ -45,16 +57,19 @@ function whenTestDonate() {
 function whenPaypalDonate() {
 	money.off("change");
 	money.off("keyup");
-	showExchangeRates();
+//	showExchangeRates();
+	getLastestExchangeRateUpdateFromServer();
 }
+/*
+// Không hỗ trợ tải http từ https, chuyển qua sử dụng server để lấy dữ liệu
 
 function showExchangeRates() {
-	$.get("https://love-and-care.herokuapp.com/quyen-gop/lay-khoa-api-ti-gia-tien-te", function(key) {
+	$.get("http://love-and-care.herokuapp.com/quyen-gop/lay-khoa-api-ti-gia-tien-te", function(key) {
 		getExchangeRates(key);
 	});
 }
 
-function getExchangeRates(key) {
+/*function getExchangeRates(key) {
 	let usd = 0;
 	let vnd = 0;
 	let url = "https://api.exchangeratesapi.io/v1/latest?access_key=" + key + "&symbols=VND,USD";
@@ -80,6 +95,7 @@ function getExchangeRates(key) {
 		}
 	})
 }
+*/
 
 function saveLastestExchangeRateToServer(number, time) {
 	let url = "https://love-and-care.herokuapp.com/quyen-gop/ti-gia-tien-te?action=set";

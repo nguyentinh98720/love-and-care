@@ -42,10 +42,10 @@ button#showMoreButton>div {
 button#showMoreButton>div>i {
 	display: none;
 	position: absolute;
-	right: 50%;
-	margin-right: -15%;
+	/* right: 1%; */
+	/* margin-right: -15%; */
 	bottom: 0;
-	margin-bottom: -3%;
+	margin-bottom: -12%; 
 	animation-name: waitforme;
 	animation-duration: 2s;
 	animation-timing-function: linear;
@@ -54,12 +54,13 @@ button#showMoreButton>div>i {
 }
 
 @keyframes waitforme {
-	0%   {transform: rotate(0deg);color: red;}
-	25%  {transform: rotate(90deg);color: blue;}
-	50%  {transform: rotate(180deg);color: yellow;}
+	0%   {transform: rotate(0deg);color: blue;}
+	25%  {transform: rotate(90deg);color: red;}
+	50%  {transform: rotate(180deg);color: grey;}
 	75%  {transform: rotate(270deg);color: green;}
-	100% {transform: rotate(360deg);color: red;}
+	100% {transform: rotate(360deg);color: blue;}
 }
+
 
 button#showMoreButton>i {
 	transition: transform 1s;

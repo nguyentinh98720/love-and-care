@@ -39,7 +39,7 @@ var myLineChart = new Chart(ctx, {
   data: {
     labels: [""],
     datasets: [{
-      label: "Tổng góp:",
+      label: "Tổng",
       lineTension: 0.3,
       backgroundColor: "rgba(78, 115, 223, 0.05)",
       borderColor: "rgba(78, 115, 223, 1)",
@@ -84,7 +84,7 @@ var myLineChart = new Chart(ctx, {
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
             // return '$' + number_format(value);
-            return number_format(value/1000000,2,'.',' ');
+            return number_format(value/1000000,1,'.',' ');
           }
         },
         gridLines: {

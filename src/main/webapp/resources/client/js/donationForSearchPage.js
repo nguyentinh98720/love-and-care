@@ -18,7 +18,6 @@ $(document).ready(function() {
 	getList(START_GET);
 	
 	showMoreButton.click(function() {
-		loadingList();
 		START_GET += NUM_PER_GET;
 		getList(START_GET);
 	})
@@ -36,7 +35,7 @@ function imgSource(imageData) {
 	return "<img src='https://love-and-care.herokuapp.com/static/media/donation.jpg' class='card-img-top' alt='Hình ảnh chương trình'>";
 }
 
-function donationCard(id, image, title, time, achievement, purpose, numDonates) {
+/*function donationCard(id, image, title, time, achievement, purpose, numDonates) {
 	if(title.length > 110) {
 		title = title.substr(0, 110) + "...";
 	}
@@ -52,7 +51,28 @@ function donationCard(id, image, title, time, achievement, purpose, numDonates) 
 	"%' aria-valuenow='" + percents + "'aria-valuemin='0' aria-valuemax='100'></div></div></div><div class='card-footer d-flex justify-content-around align-items-center'>" +
 	"<small class='text-muted'>" + numDonates + " lượt đóng góp</small><small class='text-muted'>Đạt " + percents + "% kế hoạch</small></div></div></a>";
 	return card;
+}*/
+function donationCard(id, image, title, time, achievement, purpose, numDonates) {
+	if(title.length > 110) {
+		title = title.substr(0, 110) + "...";
+	}
+	var formater = new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'});
+	let percents = Math.round(achievement/purpose * 100);
+	let card = "<acticle onclick='detailDonationUrl(" + id + ")' class='col p-0 text-decoration-none text-dark vatiCard'>" + 
+	"<div class='card mx-2'>" + image +
+	"<div class='card-body'><h5 class='card-title pb-2'>" + title + "</h5><div class='d-flex justify-content-end align-items-center py-3'>" + time +
+	"</div><div class='d-flex justify-content-start align-items-center py-2'>" + "<p class='px-1 text-success'>" + formater.format(achievement) +
+	"</p><p class='px-1'>/</p><p class='px-1 text-warning fw-bold'>" + formater.format(purpose) +
+	"</p></div><div class='progress'><div class='progress-bar progress-bar-striped bg-info' role='progressbar' style='width:" + percents +
+	"%' aria-valuenow='" + percents + "'aria-valuemin='0' aria-valuemax='100'></div></div></div><div class='card-footer d-flex justify-content-around align-items-center'>" +
+	"<small class='text-muted'>" + numDonates + " lượt đóng góp</small><small class='text-muted'>Đạt " + percents + "% kế hoạch</small></div></div></acticle>";
+	return card;
 }
+function detailDonationUrl(id) {
+	let url = "https://love-and-care.herokuapp.com/quyen-gop/noi-dung-chuong-trinh?eventId=" + id;
+	location.replace(url);
+}
+
 function getList(from) {
 	if(from > total_get) {
 		loaded();
@@ -60,6 +80,7 @@ function getList(from) {
 		showMoreButton.text("Không còn kết quả phù hợp");
 		showMoreButton.attr("disabled", "disabled");
 	} else {
+		loadingList();
 		getListFromServer(from, ONLY_ACTIVE);
 	}
 }
@@ -86,7 +107,7 @@ function getListFromServer(from, only_active) {
 
 function showTotalResult(num) {
 	if(num > 0) {
-		searchResultContent.text("Có " + num + " kết quả tìm kiếm cho từ khóa: ");
+		searchResultContent.text("Tìm thấy " + num + " chương trình bao gồm từ khóa: ");
 	} else {
 		searchResultContent.text("Không tìm thấy chương trình nào với từ khóa: ");
 	}
@@ -103,7 +124,7 @@ function showList(list) {
 			time = "<p class='btn btn-sm btn-secondary rounded-pill text-light'>Đã kết thúc</p>";
 		} else if(donation.endDate != null) {
 			let days = (new Date(donation.endDate).getTime() - new Date(donation.startDate).getTime())/(3600*24*1000);
-			temp = "Còn" + Math.round(days) + " ngày";
+			temp = "Còn " + Math.round(days) + " ngày";
 			time = "<p class='card-text text-warning'>" + temp + "</p>";
 		} else {
 			time = "<p class='text-info'>Dài hạn</p>";
@@ -118,13 +139,15 @@ function showList(list) {
 function loadingList() {
 	showMoreButton.attr("disabled", "disabled");
 	showMoreButton.removeClass("border-info text-info");
-	showMoreButton.addClass("btn-secondary");
+	showMoreButton.addClass("btn-light");
 	showMoreButton.children("div").children("i").show();
+	showMoreButton.children("span").hide();
 }
 
 function loaded() {
 	showMoreButton.removeAttr("disabled");
-	showMoreButton.removeClass("btn-secondary");
+	showMoreButton.removeClass("btn-light");
 	showMoreButton.addClass("border-info text-info");
 	showMoreButton.children("div").children("i").hide();
+	showMoreButton.children("span").show();
 }
