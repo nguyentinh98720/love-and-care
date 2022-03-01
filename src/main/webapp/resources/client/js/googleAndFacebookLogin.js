@@ -3,7 +3,8 @@
 function init() {
     gapi.load('auth2', function() {
         auth2 = gapi.auth2.init({
-            client_id: '200543827698-uer4l422euqo0ln4mm6ic8bb7vrervnu.apps.googleusercontent.com',
+	/*================== google client id ============================*/
+            client_id: '0000',
             cookiepolicy: 'single_host_origin',
             scope: 'profile email'
         });
@@ -62,7 +63,8 @@ function getUrlFromServer(email, firstName, lastName) {
 /* Login with facebook */
 window.fbAsyncInit = function() {
     FB.init({
-      appId      : 4821949414560775,
+	/*================ facebook app id ======================*/
+      appId      : 0000,
       cookie     : true,
       xfbml      : true,
       version    : 'v12.0'
