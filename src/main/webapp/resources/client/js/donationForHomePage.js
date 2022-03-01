@@ -86,8 +86,8 @@ function showList(list) {
 
 $(document).ready(function() {
 	getList(START_GET);
-	START_GET += NUM_PER_GET;
-	getList(START_GET);
+//	START_GET += NUM_PER_GET;
+//	getList(START_GET);
 	
 	showMoreButton.click(function() {
 		loadingList();

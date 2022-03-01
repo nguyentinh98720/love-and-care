@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -233,6 +232,7 @@ public class AccountServiceImpl implements AccountService {
 		String email = request.getParameter("email");
 		
 		if(!(accountValidator.checkEmail(email))) return false;
+		if(!isNewEmail(email)) return false;
 		
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
@@ -310,7 +310,7 @@ public class AccountServiceImpl implements AccountService {
 		try {
 			id = accountAction.getAccountId(email);
 			if(id == 0) return user;
-		} catch (EmptyResultDataAccessException e) {
+		} catch (IncorrectResultSizeDataAccessException e) {
 			user.setId(0);
 			return user;
 		}
@@ -342,7 +342,7 @@ public class AccountServiceImpl implements AccountService {
 		try {
 			id = accountAction.getAccountId(email);
 			if(id == 0) return user;
-		} catch (EmptyResultDataAccessException e) {
+		} catch (IncorrectResultSizeDataAccessException e) {
 			user.setId(0);
 			return user;
 		}
