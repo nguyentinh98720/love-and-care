@@ -26,7 +26,7 @@
               <i class="fas fa-trash"></i>
             </button>
 </c:if>
-            <label for="avatar-upload" class="btn btn-primary rounded-circle" title="Thay ảnh khác">
+            <label for="avatar-upload" class="btn btn-primary rounded-circle" title="Cập nhật ảnh đại diện">
               <i class="fas fa-sync-alt"></i>
             </label>
             <input type="file" id="avatar-upload" style="display: none;" name="avatar">
@@ -74,9 +74,9 @@
           <span class="badge bg-danger text-light"></span>
         </div>
         <div class="col-lg-12 mt-5" id="editSelect">
-          <a href="https://love-and-care.herokuapp.com/quan-ly/lich-su-quyen-gop" class="text-decoration-none mx-2 link-info">Xem lịch sử</a>
-          <span onclick="editInformation()" class="link link-info mx-2" style="cursor: pointer;">Chỉnh sửa</span>
-          <a href="https://love-and-care.herokuapp.com/greeting/doi-mat-khau" class="text-decoration-none mx-2 link-info">Đổi mật khẩu</a>
+          <a href="https://love-and-care.herokuapp.com/quan-ly/lich-su-quyen-gop" class="mx-2 btn btn-outline-info">Xem lịch sử</a>
+          <span onclick="editInformation()" class="btn btn-outline-success mx-2">Chỉnh sửa</span>
+          <a href="https://love-and-care.herokuapp.com/greeting/doi-mat-khau" class="mx-2 btn btn-outline-warning">Đổi mật khẩu</a>
         </div>
       </form>
     </div>

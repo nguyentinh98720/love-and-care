@@ -99,13 +99,13 @@ $(document).ready(function() {
 function loadingList() {
 	showMoreButton.attr("disabled", "disabled");
 	showMoreButton.removeClass("border-info text-info");
-	showMoreButton.addClass("btn-secondary");
+	showMoreButton.addClass("btn-light");
 	showMoreButton.children("div").children("i").show();
 }
 
 function loaded() {
 	showMoreButton.removeAttr("disabled");
-	showMoreButton.removeClass("btn-secondary");
+	showMoreButton.removeClass("btn-light");
 	showMoreButton.addClass("border-info text-info");
 	showMoreButton.children("div").children("i").hide();
 }

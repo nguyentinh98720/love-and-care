@@ -94,7 +94,7 @@ function hideSomething(elements) {
     })
 }
 function deleteAvatar() {
-    if(confirm("Lưu ý: Hình ảnh sẽ bị xóa ngay cả khi bạn hủy tác vụ!\nBạn vẫn muỗn xóa chứ?")) {
+    if(confirm("Xác nhận xóa ảnh đại diện")) {
 		$.post(
 			"https://love-and-care.herokuapp.com/quan-ly/xoa-anh-dai-dien",
 			function(result) {
@@ -133,7 +133,7 @@ function verifyTextLength(inputText, length, required) {
 		return false;
 	} else if(inputText.val() == "" && required) {
 		inputText.addClass("bg-warning text-light");
-		editAction.children("span").text("Thiếu thông tin cho trường màu vàng");
+		editAction.children("span").text("Hãy nhập đầy đủ thông tin trước khi cập nhật.");
 		submitButton.attr("disabled", "disabled");
 		return false;
 	}
@@ -146,8 +146,8 @@ function clearWarning(inputText) {
 }
 function checkFileSize() {
 	if(avatarInput != null) {
-		if(avatarInput[0].files[0].size > 10*1000*1000) {
-			editAction.children("span").text("Dung lượng ảnh tối đa là 10Mb");
+		if(avatarInput[0].files[0].size > 5*1024*1000) {
+			editAction.children("span").text("Dung lượng ảnh tối đa là 5Mb");
 			return false;
 		}
 	}
