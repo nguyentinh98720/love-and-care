@@ -30,32 +30,60 @@ BigDecimal achievement = donation.getAchievement();
 boolean status = donation.getStatus();
 List<ImgEvent> images = donation.getImages();
 long donationCount = donation.getDonationCount();
+
+String timeActiveOfEvent = "Chương trình đang diễn ra";
+Calendar start = Calendar.getInstance();
+Date now = new Date(System.currentTimeMillis());
+start.setTime(now);
+Calendar end = Calendar.getInstance();
+boolean acceptDonate = false;
+if (endDate != null) {
+	end.setTime(endDate);
+	long days = (end.getTime().getTime() - start.getTime().getTime()) / (1000 * 60 * 60 * 24);
+	if (days >= 0) {
+		acceptDonate = true;
+		timeActiveOfEvent = "<span class='badge bg-info'>Còn lại " + days + " ngày</span>";
+	} else {
+		timeActiveOfEvent = "<span class='badge bg-secondary'>Đã kết thúc</span>";
+	}
+} else {
+	acceptDonate = true;
+	timeActiveOfEvent = "<span class='badge bg-success'><small>Chương trình được tổ chức dài hạn</small></span>";
+}
 %>
 <%!String sourceOfImage(ImgEvent image) {
 		String type = image.getType();
 		byte[] arr = image.getArray();
 		String encoderFile = Base64.encodeBase64String(arr);
 		return "<br><img src='data:" + type + ";base64," + encoderFile + "' style='width:100%;'/><br>";
-	}%>
+}%>
 <style>
-	figure.image>img , p>img{
-		width: 100% !important;
-	}
+figure.image>img, p>img {
+	width: 100% !important;
+}
 </style>
 <!-- Begin Page Content -->
 <div class="container">
 
 	<div class="row mt-4">
 
-		<div class="col-lg-8">
+		<div class="col-lg-8" style="position:relative;">
 
 			<div class="mb-4">
 				<h4><%=title%></h4>
 				<!-- title detail and images -->
 				<%
-					out.println(detail);
+				out.println(detail);
 				%>
 			</div>
+			<%
+			if (acceptDonate) {
+			%>
+			<div class="text-center py-1"
+				style="position: sticky; bottom: 0; background-color: #fff;">
+				<label for="DonateNow" class="btn btn-outline-danger">Quyên góp ngay</label>
+			</div>
+			<% } %>
 		</div>
 
 		<!-- Second Column -->
@@ -64,14 +92,12 @@ long donationCount = donation.getDonationCount();
 			<!-- Background Gradient Utilities -->
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="fw-light">TIến độ</h6	>
+					<h6 class="fw-light">TIến độ</h6>
 				</div>
 				<div class="card-body">
 					<div class="no-gutters align-items-center">
 						<div>
-							<div
-								class="text-success mb-1">
-								Tổng số lượt quyên góp</div>
+							<div class="text-success mb-1">Tổng số lượt quyên góp</div>
 							<div class="h5 font-weight-bold text-gray-800">
 								<!-- tổng số lượt quyên góp -->
 								<%=donationCount%>
@@ -80,9 +106,7 @@ long donationCount = donation.getDonationCount();
 					</div>
 					<div class="no-gutters align-items-center">
 						<div>
-							<div
-								class="text-info mb-1">
-								Đã quyên góp được</div>
+							<div class="text-info mb-1">Đã quyên góp được</div>
 							<div class="no-gutters align-items-center">
 								<div>
 									<p class="font-weight-bold text-gray-800">
@@ -112,42 +136,28 @@ long donationCount = donation.getDonationCount();
 					</div>
 					<div class="no-gutters align-items-center">
 						<div>
-							<div
-								class="text-warning mt-3">
-								Thời gian còn lại</div>
+							<div class="text-warning mt-3">Trạng thái</div>
 							<div class="h5 font-weight-bold text-gray-800">
 								<!-- tính toán và viết số ngày còn lại vào đây -->
-								<%
-								Calendar start = Calendar.getInstance();
-								Date now = new Date(System.currentTimeMillis());
-								start.setTime(now);
-								Calendar end = Calendar.getInstance();
-								boolean acceptDonate = false;
-								if (endDate != null) {
-									end.setTime(endDate);
-									long days = (end.getTime().getTime() - start.getTime().getTime()) / (1000 * 60 * 60 * 24);
-									if (days >= 0) {
-										acceptDonate = true;
-										out.println(days + " ngày");
-									} else {
-										out.println("Đã kết thúc");
-									}
-								} else {
-									acceptDonate = true;
-									out.println("<span class='badge bg-success'>Chưa xác định thời gian kết thúc</span>");
-								}
-								%>
+								<%= timeActiveOfEvent%>
 							</div>
 						</div>
 					</div>
-					<%if(acceptDonate) { %>
+					<%
+					if (acceptDonate) {
+					%>
 					<div class="d-flex justify-content-center">
-						<form action="https://love-and-care.herokuapp.com/quyen-gop/buoc-1" method="post">
-							<input type="hidden" name="eventId" value="<%= id %>">
-							<input type="submit" class="mt-3 px-5 btn btn-outline-danger" value="Quyên góp">
+						<form
+							action="https://love-and-care.herokuapp.com/quyen-gop/buoc-1"
+							method="post">
+							<input type="hidden" name="eventId" value="<%=id%>">
+							<input type="submit" class="mt-3 px-5 btn btn-outline-danger"
+								value="Quyên góp" id="DonateNow">
 						</form>
 					</div>
-					<% } %>
+					<%
+					}
+					%>
 				</div>
 			</div>
 			<div class="card border-success mb-4">
@@ -175,8 +185,11 @@ long donationCount = donation.getDonationCount();
 								Date date = donate.getDate();
 								String message = donate.getMessage();
 								boolean secret = donate.isSecret();
-								out.println("<tr onclick='showMoreVati(" + rowI + ")'><td>" + (secret ? "Nhà hảo tâm" : accountName) + "</td><td>" + format.format(money.doubleValue())
-								+ "</td></tr><tr id='rowVati" + rowI + "' style='display:none' class='fw-light fs-6'><td><i class='fas fa-clock'></i> " + new SimpleDateFormat("dd/MM/yyy").format(date) + "</td><td><i class='fas fa-sms'></i> " + message + "</td></tr>");
+								out.println("<tr onclick='showMoreVati(" + rowI + ")'><td>" + (secret ? "Nhà hảo tâm" : accountName) + "</td><td>"
+								+ format.format(money.doubleValue()) + "</td></tr><tr id='rowVati" + rowI
+								+ "' style='display:none' class='fw-light fs-6'><td><i class='fas fa-clock'></i> "
+								+ new SimpleDateFormat("dd/MM/yyy").format(date) + "</td><td><i class='fas fa-sms'></i> " + message
+								+ "</td></tr>");
 								rowI++;
 							}
 							%>
@@ -209,8 +222,11 @@ long donationCount = donation.getDonationCount();
 								Date date = donate.getDate();
 								String message = donate.getMessage();
 								boolean secret = donate.isSecret();
-								out.println("<tr onclick='showMoreVaty(" + rowY + ")'><td>" + (secret ? "Nhà hảo tâm" : accountName) + "</td><td>" + format.format(money.doubleValue())
-								+ "</td></tr><tr id='rowVaty" + rowY + "' style='display:none;' class='fw-light fs-6'><td><i class='fas fa-clock'></i> " + new SimpleDateFormat("dd/MM/yyy").format(date) + "</td><td><i class='fas fa-sms'></i> " + message + "</td></tr>");
+								out.println("<tr onclick='showMoreVaty(" + rowY + ")'><td>" + (secret ? "Nhà hảo tâm" : accountName) + "</td><td>"
+								+ format.format(money.doubleValue()) + "</td></tr><tr id='rowVaty" + rowY
+								+ "' style='display:none;' class='fw-light fs-6'><td><i class='fas fa-clock'></i> "
+								+ new SimpleDateFormat("dd/MM/yyy").format(date) + "</td><td><i class='fas fa-sms'></i> " + message
+								+ "</td></tr>");
 								rowY++;
 							}
 							%>
