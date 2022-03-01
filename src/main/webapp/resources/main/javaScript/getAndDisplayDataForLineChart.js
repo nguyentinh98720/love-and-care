@@ -1,7 +1,7 @@
 let START = 0;
 let NUM_PER_PAGE = 5;
 let TOTAL = 0;
-const LENGTH_STATISTICS = 10; // total days
+const LENGTH_STATISTICS = 15; // total days
 let dataForDashBoard = [];
 
 let row1 = $("tr#row1");

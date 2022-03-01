@@ -74,17 +74,17 @@ var myLineChart = new Chart(ctx, {
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 10
+          maxTicksLimit: 15
         }
       }],
       yAxes: [{
         ticks: {
-          maxTicksLimit: 10,
-          padding: 10,
+          maxTicksLimit: 20,
+          padding: 5,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
             // return '$' + number_format(value);
-            return number_format(value/1000000,2,',',' ');
+            return number_format(value/1000000,2,'.',' ');
           }
         },
         gridLines: {
