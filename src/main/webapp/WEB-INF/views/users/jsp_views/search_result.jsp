@@ -4,7 +4,7 @@
 <div class="album py-5">
 	<div class="container">
 		<div class="text-center">
-			<span class="fs-5">Kết quả tìm kiếm cho: </span>
+			<span class="fs-5" id="searchResutlContent"></span>
 			<span class="text-secondary h5" id="searchValue"><c:out value="${requestScope.searchValue}"/></span>
 		</div>
 		<div id="areaForEvent" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">

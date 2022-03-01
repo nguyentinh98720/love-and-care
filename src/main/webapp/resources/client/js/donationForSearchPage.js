@@ -5,11 +5,13 @@ let total_get = 6;
 let area;
 let showMoreButton;
 let searchValue;
+let searchResultContent;
 
 
 $(document).ready(function() {
 	
 	searchValue = $("span#searchValue");
+	searchResultContent = $("span#searchResutlContent");
 	area = $("div#areaForEvent");
 	showMoreButton = $("button#showMoreButton");
 	
@@ -73,12 +75,21 @@ function getListFromServer(from, only_active) {
 		success: function(result) {
 			let list = result.list;
 			total_get = result.total;
+			showTotalResult(total_get);
 			showList(list);
 		},
 		error: function(error) {
 			console.log(error);
 		}
 	});
+}
+
+function showTotalResult(num) {
+	if(num > 0) {
+		searchResultContent.text("Có " + num + " kết quả tìm kiếm cho từ khóa: ");
+	} else {
+		searchResultContent.text("Không tìm thấy chương trình nào với từ khóa: ");
+	}
 }
 
 function showList(list) {
