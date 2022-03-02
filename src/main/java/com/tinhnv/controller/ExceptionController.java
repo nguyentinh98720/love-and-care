@@ -34,4 +34,11 @@ public class ExceptionController {
 		request.setAttribute("message", "Trang hiện tại đang chấp nhận một phương thức yêu cầu khác!");
 		return "error";
 	}
+	
+	@ExceptionHandler(Exception.class)
+	public String otherError(Exception exception, HttpServletRequest request) {
+		logger.error(exception);
+		request.setAttribute("message", "Rất tiếc! Đã xảy ra lỗi. Chi tiết: " + exception.getMessage());
+		return "error";
+	}
 }

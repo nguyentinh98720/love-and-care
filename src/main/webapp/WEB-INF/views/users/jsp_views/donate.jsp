@@ -21,7 +21,7 @@ div.vatiDonate>div {
 				<tr>
 					<th>Cách thức quyên góp:</th>
 					<td><label for="test"><input type="radio" id="test"
-							name="donateAction" value="test" checked> Test thử</label><br>
+							name="donateAction" value="test" checked> Quyên góp thường</label><br>
 						<label for="paypal"><input type="radio" id="paypal"
 							name="donateAction" value="paypal"> Quyên góp qua Paypal</label>
 					</td>
