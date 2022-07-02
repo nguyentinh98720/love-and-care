@@ -57,7 +57,7 @@ function donationCard(id, image, title, time, achievement, purpose, numDonates) 
 		title = title.substr(0, 110) + "...";
 	}
 	var formater = new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND'});
-	let percents = Math.round(achievement/purpose * 100);
+	let percents = purpose == 0 ? 100 : Math.round(achievement/purpose * 100);
 	let card = "<acticle onclick='detailDonationUrl(" + id + ")' class='col p-0 text-decoration-none text-dark vatiCard'>" + 
 	"<div class='card mx-2'>" + image +
 	"<div class='card-body'><h5 class='card-title pb-2'>" + title + "</h5><div class='d-flex justify-content-end align-items-center py-3'>" + time +
